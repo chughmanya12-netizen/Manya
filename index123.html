@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine 💗</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 24px;
+      width: 380px;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    #cryBox {
+      margin-top: 12px;
+      font-size: 22px;
+      min-height: 28px;
+    }
+
+    .buttons {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      align-items: center;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+      transform: scale(1);
+    }
+
+    #noBtn {
+      background: #e0e0e0;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Will you be my Valentine? 🌸</h1>
+    <div id="cryBox"></div>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💗</button>
+      <button id="noBtn">No 😢</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const cryBox = document.getElementById("cryBox");
+
+    let noCount = 0;
+    let yesScale = 1;
+
+    const noTexts = [
+      "Are you sure?",
+      "Think again?",
+      "Last chance!",
+      "Surely not?",
+      "Okay… you’re done 😐"
+    ];
+
+    noBtn.addEventListener("click", () => {
+      noCount++;
+
+      // add crying emoji
+      cryBox.innerHTML += " 😢";
+
+      // change NO text
+      if (noCount <= noTexts.length) {
+        noBtn.innerText = noTexts[noCount - 1];
+      }
+
+      // grow YES
+      yesScale += 0.18;
+      yesBtn.style.transform = `scale(${yesScale})`;
+
+      // delete NO after 5th click
+      if (noCount >= 5) {
+        noBtn.remove();
+      }
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.querySelector(".card").innerHTML = `
+        <h1>It will be the best decision you have ever made 💖</h1>
+        <p style="margin-top:15px;font-size:18px;">
+          🎉 Congratulations 🎉<br><br>
+          You won me for your lifetime.<br><br>
+          I love you so much.<br>
+          You are always mine,<br>
+          and I will always be yours 🌷
+        </p>
+      `;
+    });
+  </script>
+
+</body>
+</html>
